@@ -1,2 +1,2 @@
-# Advanced-Platform
+# Advanced-Platformer
 AP CSA Final Project
