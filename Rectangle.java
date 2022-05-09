@@ -10,7 +10,7 @@ public class Rectangle {
    private int x, y; // position of top left corner
    private int width, height;
    private int top, bottom, left, right; // for collision
-   private static Color color;
+   private Color color;
    
    public Rectangle (int x, int y, int width, int height, Color color) {
       this.x = x;
@@ -59,6 +59,10 @@ public class Rectangle {
       return height;
    }
    
+   public Color getColor() {
+      return color;
+   }
+   
    
    // Setters
    
@@ -70,6 +74,21 @@ public class Rectangle {
       this.x = x;
    }
    
+   public void setTop(int t) {
+      top = t;
+   }
+   
+   public void setBottom(int b) {
+      bottom = b;
+   }
+   
+   public void setLeft(int l) {
+      left = l;
+   }
+   
+   public void setRight(int r) {
+      right = r;
+   }
    
    // Methods
    

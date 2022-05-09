@@ -5,40 +5,20 @@
 import java.awt.Graphics;
 import java.awt.Color;
 
-public class Hazard {
+public class Hazard extends Rectangle {
 
-   private int x, y; // position of top left corner
-   private int width, height;
-   private static Color color;
-   private int right, left, top, bottom; // for collision
    private Player p1; // reference
    private final int DAMAGE_PAUSE = 400; // Pause in millis before respawning
 
    Hazard(Player p1, int x, int y, int width, int height) {
-      this.x = x;
-      this.y = y;
-      this.width = width;
-      this.height = height;
-      top = y;
-      bottom = y + height;
-      left = x + 10;
-      right = (x + width) - 10;
-      color = new Color(235, 107, 111);
+      super(x, y, width, height, new Color(235, 107, 111));
+      setLeft(x + 10);
+      setRight(getRight() - 10);
       this.p1 = p1;
    }
    
-   // Setters
-   
-   public static void setColor(Color c) {
-      color = c;
-   }
    
    // Methods
-   
-   public void drawMe(Graphics g) {
-      g.setColor(color);
-      g.fillRect(x, y, width, height);
-   }
    
    // checks if the player is colliding and respawns them if so
    public void damage() {
@@ -53,25 +33,23 @@ public class Hazard {
    
    // for hazards in a wall, so they can be hit
    public void embeddedBounds() {
-      top = y + 10;
-      bottom = (y + height) - 10;
-      left = x;
-      right = x + width;
+      setTop(getY() + 10);
+      setBottom((getY() + getHeight()) - 10);
+      setLeft(getX());
+      setRight(getX() + getWidth());
    }
    
-   // returns if player is within its bounds
+   // returns whether player is within its bounds
    private boolean isColliding() {
-      if (p1.getRight()>this.left && p1.getLeft()<this.right && p1.getTop()<this.bottom && p1.getBottom()>this.top) {
+      if (p1.getRight()>getLeft() && p1.getLeft()<getRight() && p1.getTop()<getBottom() && p1.getBottom()>getTop())
          return true;
-      }
-      else {
+      else
          return false;
-      }
    }
    
    // toString
    public String toString() {
       return String.format("Hazard at (%d, %d), size [%d, %d], color %s", 
-                            x, y, width, height, color);
+                            getX(), getY(), getWidth(), getHeight(), getColor());
    }
 }

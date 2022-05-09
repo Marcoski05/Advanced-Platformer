@@ -5,28 +5,16 @@
 import java.awt.Graphics;
 import java.awt.Color;
 
-public class Platform {
+public class Platform extends Rectangle {
 
-   private int x, y; // position of top left corner
-   private int width, height;
-   private int top, bottom, left, right; // for collision
-   private static Color color;
    private boolean onWall, onGround;
    private int type; // which side the player is colliding with
    private Player p1; // reference
 
    Platform(Player p1, int x, int y, int width, int height) {
-      this.x = x;
-      this.y = y;
-      this.width = width;
-      this.height = height;
-      top = y;
-      bottom =  y + height;
-      left = x;
-      right = x + width;
+      super(x, y, width, height, new Color(124, 63, 88));
       this.p1 = p1;
       type = 0;
-      color = new Color(124, 63, 88);
    }
 
    // Getters
@@ -38,31 +26,13 @@ public class Platform {
    public boolean getOnWall() {
       return onWall;
    }
-
-   public int getX() {
-      return x;
-   }
-
-   public int getY() {
-      return y;
-   }
    
    public int getType() {
       return type;
    }
-
-   // Setters
    
-   public static void setColor(Color c) {
-      color = c;
-   }
    
    // Methods
-   
-   public void drawMe(Graphics g) {
-      g.setColor(color);
-      g.fillRect(x, y, width, height);
-   }
    
    // Finds what side the player is to the platform, which is the side the player will collide from if it collides
    public void collisionType() {
@@ -71,10 +41,10 @@ public class Platform {
       boolean t = false;
       boolean b = false;
       
-      if (p1.getBottom() > this.top) {b = true;}
-      if (p1.getTop() < this.bottom) {t = true;}
-      if (p1.getRight() > this.left) {r = true;}
-      if (p1.getLeft() < this.right) {l = true;}
+      if (p1.getBottom() > getTop()) {b = true;}
+      if (p1.getTop() < getBottom()) {t = true;}
+      if (p1.getRight() > getLeft()) {r = true;}
+      if (p1.getLeft() < getRight()) {l = true;}
       
       if (b == false) {
          type = 1;
@@ -96,20 +66,20 @@ public class Platform {
       if (isColliding()) {
          switch (type) {
             case 1:
-               p1.setY(this.top - p1.getHeight());
+               p1.setY(getTop() - p1.getHeight());
                p1.setYVelocity(0);
                p1.setCanJump(true); // can jump because player is now on the ground
                break;
             case 2:
-               p1.setY(this.bottom);
+               p1.setY(getBottom());
                p1.setYVelocity(0);
                break;
             case 3:
-               p1.setX(this.left - p1.getWidth());
+               p1.setX(getLeft() - p1.getWidth());
                p1.setXVelocity(0);
                break;
             case 4:
-               p1.setX(this.right);
+               p1.setX(getRight());
                p1.setXVelocity(0);
                break;
          }
@@ -124,17 +94,9 @@ public class Platform {
          p1.setOnWall(1);
    }
    
-   // updates bounds when level is loaded for collision
-   public void updateBounds() {
-      top = y;
-      bottom = y + height;
-      left = x;
-      right = x + width;
-   }
-   
    // returns whether player is within its bounds
    private boolean isColliding() {
-      if (p1.getRight()>this.left && p1.getLeft()<this.right && p1.getTop()<this.bottom && p1.getBottom()>this.top)
+      if (p1.getRight()>getLeft() && p1.getLeft()<getRight() && p1.getTop()<getBottom() && p1.getBottom()>getTop())
          return true;
       else
          return false;
@@ -143,6 +105,6 @@ public class Platform {
    // toString
    public String toString() {
       return String.format("Platform at (%d, %d), size [%d, %d], color %s", 
-                            x, y, width, height, color);
+                            getX(), getY(), getWidth(), getHeight(), getColor());
    }
 }

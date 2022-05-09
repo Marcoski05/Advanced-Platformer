@@ -15,7 +15,7 @@ public class Game extends JComponent {
    private Player p1;
    private GraphicalWindow window;
    private Timer timer;
-   private final int TIMER_MILLIS = 15.9; // Approximately 60fps
+   private final int TIMER_MILLIS = 17; // Approximately 60fps
    private final int END_PAUSE = 2000; // Pause in millis when you beat the last level before ending the program
    
    //Arrays of platforms and hazards for each level

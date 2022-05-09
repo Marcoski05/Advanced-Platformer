@@ -5,14 +5,11 @@
 import java.awt.Graphics;
 import java.awt.Color;
 
-public class Player {
+public class Player extends Rectangle {
 
-   private int width, height;
+   private Color eyeColor;
    private int eyeWidth, eyeHeight;
-   private Color color, eyeColor;
    private Boolean eyeRight;
-   private int y, x; // position of top left corner
-   private int top, bottom, left, right; // for collision
    private final int X_SPAWN = 100;
    private final int Y_SPAWN = 500;
    private boolean loadLevel; // whether or not the next level should be loaded
@@ -36,18 +33,15 @@ public class Player {
    private GraphicalWindow window; // reference
    
    Player() {
-      width = 50;
-      height = 50;
-      y = Y_SPAWN;
-      x = X_SPAWN;
+      super(100, 500, 50, 50, new Color (249, 168, 117));
       loadLevel = true;
-      color = new Color(249, 168, 117);
       eyeColor = new Color(77, 40, 55);
       eyeWidth = 6;
       eyeHeight = 17;
       eyeRight = true;
       maxFallSpeed = 15;
    }
+   
    
    // Getters
    
@@ -58,39 +52,7 @@ public class Player {
    public double getXVelocity() {
       return xVelocity;
    }
-   
-   public int getY() {
-      return y;
-   }
-   
-   public int getX() {
-      return x;
-   }
-   
-   public int getRight() {
-      return right;
-   }
-   
-   public int getLeft() {
-      return left;
-   }
-   
-   public int getTop() {
-      return top;
-   }
-   
-   public int getBottom() {
-      return bottom;
-   }
-   
-   public int getHeight() {
-      return height;
-   }
-   
-   public int getWidth() {
-      return width;
-   }
-   
+      
    public int getOnWall() {
       return onWall;
    }
@@ -99,15 +61,8 @@ public class Player {
       return loadLevel;
    }
    
+   
    // Setters
-   
-   public void setY(int y) {
-      this.y = y;
-   }
-   
-   public void setX(int x) {
-      this.x = x;
-   }
    
    public void setYVelocity(double v) {
       yVelocity = v;
@@ -144,9 +99,9 @@ public class Player {
    
    // Methods
    
+   @Override
    public void drawMe(Graphics g) {
-      g.setColor(color);
-      g.fillRect(x, y, width, height);
+      super.drawMe(g);
       drawEyes(g);
    }
    
@@ -154,24 +109,24 @@ public class Player {
    private void drawEyes(Graphics g) {
       g.setColor(eyeColor);
       if (window.getRight()) {
-         g.fillRect(x + 20, y + 13, eyeWidth, eyeHeight);
-         g.fillRect(x + 38, y + 13, eyeWidth, eyeHeight);
+         g.fillRect(getX() + 20, getY() + 13, eyeWidth, eyeHeight);
+         g.fillRect(getX() + 38, getY() + 13, eyeWidth, eyeHeight);
          eyeRight = true;
       }
       else if (window.getLeft()){
-         g.fillRect(x + 7, y + 13, eyeWidth, eyeHeight);
-         g.fillRect(x + 25, y + 13, eyeWidth, eyeHeight);
+         g.fillRect(getX() + 7, getY() + 13, eyeWidth, eyeHeight);
+         g.fillRect(getX() + 25, getY() + 13, eyeWidth, eyeHeight);
          eyeRight = false;
       }
       else {
          // eyes stay facing the same direction when no buttons are being pressed
          if (eyeRight == true) {
-            g.fillRect(x + 20, y + 13, eyeWidth, eyeHeight);
-            g.fillRect(x + 38, y + 13, eyeWidth, eyeHeight);
+            g.fillRect(getX() + 20, getY() + 13, eyeWidth, eyeHeight);
+            g.fillRect(getX() + 38, getY() + 13, eyeWidth, eyeHeight);
          }
          else {
-            g.fillRect(x + 7, y + 13, eyeWidth, eyeHeight);
-            g.fillRect(x + 25, y + 13, eyeWidth, eyeHeight);
+            g.fillRect(getX() + 7, getY() + 13, eyeWidth, eyeHeight);
+            g.fillRect(getX() + 25, getY() + 13, eyeWidth, eyeHeight);
          }
       }
    }
@@ -209,16 +164,16 @@ public class Player {
    
    // applys velocity to the players position
    public void applyVelocity() {
-      x += xVelocity;
-      y += yVelocity;
+      setX(getX() + (int)xVelocity);
+      setY(getY() + (int)yVelocity);
    }
    
    // Updates bounds after player moves
    public void updateBounds() {
-      top = y;
-      bottom = y + height;
-      left = x;
-      right = x + width;
+      setTop(getY());
+      setBottom(getY() + getHeight());
+      setLeft(getX());
+      setRight(getX() + getWidth());
    }
    
    // adds positive force to xAcceleration
@@ -235,7 +190,7 @@ public class Player {
       }
    }
    
-   // Adds upward force to yAcceleratio,
+   // Adds upward force to yAcceleration
    public void jump() {
       if (canJump) {
          yAcceleration = -1 * JUMP_STRENGTH;
@@ -287,13 +242,13 @@ public class Player {
    
    // Sets players position to the spawn
    public void respawn() {
-      x = X_SPAWN;
-      y = Y_SPAWN;
+      setX(X_SPAWN);
+      setY(Y_SPAWN);
    }
    
    // toString
    public String toString() {
       return String.format("Player at (%d, %d), size [%d, %d], color %s", 
-                            x, y, width, height, color);
+                            getX(), getY(), getWidth(), getHeight(), getColor());
    }
 }
