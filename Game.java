@@ -12,11 +12,16 @@ import javax.swing.JComponent;
 public class Game extends JComponent {
 
    static String title = "Super Boks Bro";
+   private static State state = State.MENU;
    private Player p1;
    private GraphicalWindow window;
    private Timer timer;
    private final int TIMER_MILLIS = 17; // Approximately 60fps
-   private final int END_PAUSE = 2000; // Pause in millis when you beat the last level before ending the program
+   private final int END_PAUSE = 1000; // Pause in millis when you beat the last level before ending the program
+   
+   private enum State {
+      MENU, GAME
+   };
    
    //Arrays of platforms and hazards for each level
    private Platform[] pl1 = new Platform[6];
@@ -44,6 +49,7 @@ public class Game extends JComponent {
       window.getContentPane().setBackground(new Color(255, 246, 211));
       window.getContentPane().add(this);
       
+      
       timer = new Timer(TIMER_MILLIS, 
          new ActionListener() {
             @Override
@@ -53,14 +59,39 @@ public class Game extends JComponent {
             }
          }
          );
-   
-      instantiate();
       
       window.setVisible(true);
-      timer.start();
-   
+      
+      if (state == State.GAME) {
+         instantiate();
+         timer.start();
+      }
    }
    
+   
+   // All of the processes and logic that needs to happen each frame
+   // Physics, Collision, Controls, etc.
+   private void gameLoop() {
+      window.keyListen();
+      p1.setCanJump(false);
+      p1.updateBounds();
+      collisionTypeLoop();
+      p1.friction();
+      p1.wallSlide();
+      p1.playerFalls();
+      p1.updateVelocity();
+      p1.applyVelocity();
+      p1.updateBounds();
+      damageLoop();
+      p1.updateBounds();
+      doCollisionLoop();
+      goal.goalReached();
+      p1.setOnWall(0);
+      slideTypeLoop();
+      window.repaint();
+      p1.resetAcceleration();
+   }
+
 
    @Override
    public void paintComponent(Graphics g) {
@@ -135,29 +166,6 @@ public class Game extends JComponent {
             System.exit(0); // Closes the window and ends the run
             break;
       }
-   }
-
-   // All of the processes and logic that needs to happen each frame
-   // Physics, Collision, Controls, etc.
-   private void gameLoop() {
-      window.keyListen();
-      p1.setCanJump(false);
-      p1.updateBounds();
-      collisionTypeLoop();
-      p1.friction();
-      p1.wallSlide();
-      p1.playerFalls();
-      p1.updateVelocity();
-      p1.applyVelocity();
-      p1.updateBounds();
-      damageLoop();
-      p1.updateBounds();
-      doCollisionLoop();
-      goal.goalReached();
-      p1.setOnWall(0);
-      slideTypeLoop();
-      window.repaint();
-      p1.resetAcceleration();
    }
    
    // Finds the collision type for each element in the current level
@@ -458,5 +466,9 @@ public class Game extends JComponent {
       h9[6] = new Hazard(p1, 850, 500, 25, 100);
       h9[5].embeddedBounds();
       h9[6].embeddedBounds();
+   }
+   
+   public static State getState() {
+      return state;
    }
 }
