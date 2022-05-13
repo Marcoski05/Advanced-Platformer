@@ -12,14 +12,14 @@ import javax.swing.JComponent;
 public class Game extends JComponent {
 
    static String title = "Super Boks Bro";
-   private static State state = State.MENU;
+   private static State state = State.GAME;
    private Player p1;
-   private GraphicalWindow window;
+   private static GraphicalWindow window;
    private Timer timer;
    private final int TIMER_MILLIS = 17; // Approximately 60fps
    private final int END_PAUSE = 1000; // Pause in millis when you beat the last level before ending the program
    
-   private enum State {
+   public static enum State {
       MENU, GAME
    };
    
@@ -48,7 +48,6 @@ public class Game extends JComponent {
       
       window.getContentPane().setBackground(new Color(255, 246, 211));
       window.getContentPane().add(this);
-      
       
       timer = new Timer(TIMER_MILLIS, 
          new ActionListener() {
@@ -470,5 +469,8 @@ public class Game extends JComponent {
    
    public static State getState() {
       return state;
+   }
+   public static GraphicalWindow getWindow() {
+      return window;
    }
 }

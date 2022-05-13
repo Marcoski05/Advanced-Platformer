@@ -94,6 +94,7 @@ public class Rectangle {
    
    public void drawMe(Graphics g) {
       g.setColor(color);
-      g.fillRect(x, y, width, height);
+      g.fillRect((int)((x*(Game.getWindow().getWidth()-14)/1200.0)+0.5), (int)((y*(Game.getWindow().getHeight()-37)/650.0)+0.5), 
+                 (int)((width*(Game.getWindow().getWidth()-14)/1200.0)+0.5), (int)((height*(Game.getWindow().getHeight()-37)/650.0)+0.5));
    }
 }

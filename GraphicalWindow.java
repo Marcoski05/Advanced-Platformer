@@ -10,8 +10,8 @@ import java.awt.event.KeyEvent;
 
 public class GraphicalWindow extends JFrame implements KeyListener {
 
-   private final static int WIDTH = 1214; // width of the window
-   private final static int HEIGHT = 687; // height of the window
+   public final static int WIDTH = 1214; // width of the window
+   public final static int HEIGHT = 687; // height of the window
    private Player p1; // reference
    private boolean right, left, jump;
 
@@ -30,7 +30,7 @@ public class GraphicalWindow extends JFrame implements KeyListener {
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setSize(WIDTH, HEIGHT);
       setLocationRelativeTo(null);
-      setResizable(false);
+//       setResizable(false);
    }
    
    // Getters

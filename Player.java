@@ -105,30 +105,47 @@ public class Player extends Rectangle {
          super.drawMe(g);
          drawEyes(g);
       }
-   }
+    }
    
    // draws eyes based on the current direction being traveled
    private void drawEyes(Graphics g) {
       g.setColor(eyeColor);
       if (window.getRight()) {
-         g.fillRect(getX() + 20, getY() + 13, eyeWidth, eyeHeight);
-         g.fillRect(getX() + 38, getY() + 13, eyeWidth, eyeHeight);
+         //g.fillRect(getX() + 20, getY() + 13, eyeWidth, eyeHeight);
+         g.fillRect((int)((getX()*(Game.getWindow().getWidth()-14)/1200.0)+20.5), (int)((getY()*(Game.getWindow().getHeight()-37)/650.0)+13.5), 
+                 (int)((eyeWidth*(Game.getWindow().getWidth()-14)/1200.0)+0.5), (int)((eyeHeight*(Game.getWindow().getHeight()-37)/650.0)+0.5));
+         //g.fillRect(getX() + 38, getY() + 13, eyeWidth, eyeHeight);
+         g.fillRect((int)((getX()*(Game.getWindow().getWidth()-14)/1200.0)+38.5), (int)((getY()*(Game.getWindow().getHeight()-37)/650.0)+13.5), 
+                 (int)((eyeWidth*(Game.getWindow().getWidth()-14)/1200.0)+0.5), (int)((eyeHeight*(Game.getWindow().getHeight()-37)/650.0)+0.5));
          eyeRight = true;
       }
       else if (window.getLeft()){
-         g.fillRect(getX() + 7, getY() + 13, eyeWidth, eyeHeight);
-         g.fillRect(getX() + 25, getY() + 13, eyeWidth, eyeHeight);
+         //g.fillRect(getX() + 7, getY() + 13, eyeWidth, eyeHeight);
+         g.fillRect((int)((getX()*(Game.getWindow().getWidth()-14)/1200.0)+7.5), (int)((getY()*(Game.getWindow().getHeight()-37)/650.0)+13.5), 
+                 (int)((eyeWidth*(Game.getWindow().getWidth()-14)/1200.0)+0.5), (int)((eyeHeight*(Game.getWindow().getHeight()-37)/650.0)+0.5));
+         //g.fillRect(getX() + 25, getY() + 13, eyeWidth, eyeHeight);
+         g.fillRect((int)((getX()*(Game.getWindow().getWidth()-14)/1200.0)+25.5), (int)((getY()*(Game.getWindow().getHeight()-37)/650.0)+13.5), 
+                 (int)((eyeWidth*(Game.getWindow().getWidth()-14)/1200.0)+0.5), (int)((eyeHeight*(Game.getWindow().getHeight()-37)/650.0)+0.5));
          eyeRight = false;
       }
       else {
          // eyes stay facing the same direction when no buttons are being pressed
          if (eyeRight == true) {
-            g.fillRect(getX() + 20, getY() + 13, eyeWidth, eyeHeight);
-            g.fillRect(getX() + 38, getY() + 13, eyeWidth, eyeHeight);
+            //g.fillRect(getX() + 20, getY() + 13, eyeWidth, eyeHeight);
+         g.fillRect((int)((getX()*(Game.getWindow().getWidth()-14)/1200.0)+20.5), (int)((getY()*(Game.getWindow().getHeight()-37)/650.0)+13.5), 
+                 (int)((eyeWidth*(Game.getWindow().getWidth()-14)/1200.0)+0.5), (int)((eyeHeight*(Game.getWindow().getHeight()-37)/650.0)+0.5));
+         //g.fillRect(getX() + 38, getY() + 13, eyeWidth, eyeHeight);
+         g.fillRect((int)((getX()*(Game.getWindow().getWidth()-14)/1200.0)+38.5), (int)((getY()*(Game.getWindow().getHeight()-37)/650.0)+13.5), 
+                 (int)((eyeWidth*(Game.getWindow().getWidth()-14)/1200.0)+0.5), (int)((eyeHeight*(Game.getWindow().getHeight()-37)/650.0)+0.5));
          }
          else {
-            g.fillRect(getX() + 7, getY() + 13, eyeWidth, eyeHeight);
-            g.fillRect(getX() + 25, getY() + 13, eyeWidth, eyeHeight);
+            //g.fillRect(getX() + 7, getY() + 13, eyeWidth, eyeHeight);
+         g.fillRect((int)((getX()*(Game.getWindow().getWidth()-14)/1200.0)+7.5), (int)((getY()*(Game.getWindow().getHeight()-37)/650.0)+13.5), 
+                 (int)((eyeWidth*(Game.getWindow().getWidth()-14)/1200.0)+0.5), (int)((eyeHeight*(Game.getWindow().getHeight()-37)/650.0)+0.5));
+         //g.fillRect(getX() + 25, getY() + 13, eyeWidth, eyeHeight);
+         g.fillRect((int)((getX()*(Game.getWindow().getWidth()-14)/1200.0)+25.5), (int)((getY()*(Game.getWindow().getHeight()-37)/650.0)+13.5), 
+                 (int)((eyeWidth*(Game.getWindow().getWidth()-14)/1200.0)+0.5), (int)((eyeHeight*(Game.getWindow().getHeight()-37)/650.0)+0.5));
+         eyeRight = false;
          }
       }
    }

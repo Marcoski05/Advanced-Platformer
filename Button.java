@@ -5,7 +5,12 @@
 import java.awt.Graphics;
 import java.awt.Color;
 
-public class Button {
+public class Button extends Rectangle {
    
+   private String name;
    
+   public Button (String n, int x, int y, int width, int height, Color color) {
+      super (x, y, width, height, color);
+      name = n;
+   }
 }
