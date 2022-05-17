@@ -89,6 +89,7 @@ public class Game extends JComponent {
       slideTypeLoop();
       window.repaint();
       p1.resetAcceleration();
+      System.out.println(window.getWidth());
    }
 
 
@@ -367,7 +368,7 @@ public class Game extends JComponent {
       goal = new Goal(p1, 1249, 0, 100, 650);
       // 1
       pl1[0] = new Platform(p1, 0, 600, 1200, 50);
-      pl1[1] = new Platform(p1, 0, -1000, 50, 1650);
+      pl1[1] = new Platform(p1, 0, -1001, 50, 1650);
       pl1[2] = new Platform(p1, 1150, -1000, 50, 1450);
       pl1[3] = new Platform(p1, 350, 550, 300, 50);
       pl1[4] = new Platform(p1, 500, 500, 150, 50);
@@ -402,7 +403,7 @@ public class Game extends JComponent {
       pl5[2] = new Platform(p1, 1150, -1000, 50, 1450);
       h5[0] = new Hazard(p1, 400, 575, 100, 25);
       h5[1] = new Hazard(p1, 650, 575, 50, 25);
-      h5[2] = new Hazard(p1, 900, 500, 50, 100);
+      h5[2] = new Hazard(p1, 900, 525, 50, 75);
       // 6
       pl6[0] = new Platform(p1, 0, 600, 1200, 50);
       pl6[1] = new Platform(p1, 0, -1000, 50, 1650);

@@ -10,7 +10,7 @@ import java.awt.event.KeyEvent;
 
 public class GraphicalWindow extends JFrame implements KeyListener {
 
-   public final static int WIDTH = 1214; // width of the window
+   public final static int WIDTH = 1215; // width of the window
    public final static int HEIGHT = 687; // height of the window
    private Player p1; // reference
    private boolean right, left, jump;
@@ -112,9 +112,25 @@ public class GraphicalWindow extends JFrame implements KeyListener {
       }
    }
    
+   @Override
+   public int getWidth() {
+      if ((super.getWidth()/(WIDTH+0.0)) - (super.getHeight()/(HEIGHT+0.0)) > 0.000001)
+         return (int)(WIDTH*super.getHeight()/(HEIGHT+0.0));
+      else
+         return super.getWidth();
+   }
+   
+   @Override
+   public int getHeight() {
+      if ((super.getWidth()/(WIDTH+0.0)) - (super.getHeight()/(HEIGHT+0.0)) < 0.000001)
+         return (int)(HEIGHT*super.getWidth()/(WIDTH+0.0));
+      else
+         return super.getHeight();
+   }
+   
    // toString
    public String toString() {
-      return String.format("Windo with size of [%d, %d]", 
+      return String.format("Window with size of [%d, %d]", 
                             WIDTH, HEIGHT);
    }
 }
