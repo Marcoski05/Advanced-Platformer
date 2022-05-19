@@ -4,6 +4,7 @@
 
 import java.awt.Graphics;
 import java.awt.Color;
+import java.awt.Font;
 
 public class Button extends Rectangle {
    
@@ -15,8 +16,12 @@ public class Button extends Rectangle {
    }
    
    @Override
-   public void drawMe() {
-   super.drawMe;
-   
+   public void drawMe(Graphics g) {
+      super.drawMe(g);
+      
+      Font font = new Font("vgasys.fon", Font.PLAIN, 50);
+      g.setFont(font);
+      g.setColor(new Color(235, 107, 111));
+      g.drawString(name, getX()+getWidth()/2, getY()+getHeight()/2);
    }
 }
