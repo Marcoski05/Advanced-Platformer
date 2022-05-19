@@ -12,7 +12,7 @@ import javax.swing.JComponent;
 public class Game extends JComponent {
 
    static String title = "Super Boks Bro";
-   private static State state = State.GAME;
+   private static State state = State.MENU;
    private Player p1;
    private static GraphicalWindow window;
    private Timer timer;

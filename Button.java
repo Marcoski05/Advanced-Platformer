@@ -13,4 +13,10 @@ public class Button extends Rectangle {
       super (x, y, width, height, color);
       name = n;
    }
+   
+   @Override
+   public void drawMe() {
+   super.drawMe;
+   
+   }
 }
