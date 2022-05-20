@@ -11,7 +11,7 @@ import javax.swing.JComponent;
 
 public class Game extends JComponent {
 
-   static String title = "Super Boks Bro 2";
+   static String title = "Super Boks Bro 2.0";
    private static State state = State.MENU;
    private Player p1;
    private static GraphicalWindow window;
@@ -40,7 +40,7 @@ public class Game extends JComponent {
    private Hazard[] h9 = new Hazard[7];
    private Goal goal;
    
-   Button button = new Button("test", 600, 300, 200, 100, new Color(124, 63, 88));
+   Menu menu = new Menu();
    
    // Constructor
    Game() {
@@ -98,7 +98,7 @@ public class Game extends JComponent {
    public void paintComponent(Graphics g) {
    // calls drawMe for each element in each array
       p1.drawMe(g);
-      button.drawMe(g);
+      menu.drawMe(g);
       switch (Goal.getLevel()) {
          case 1:
             for (int r = 0; r < pl1.length; r++) {

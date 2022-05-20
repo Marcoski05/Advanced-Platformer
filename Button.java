@@ -17,11 +17,11 @@ public class Button extends Rectangle {
    
    @Override
    public void drawMe(Graphics g) {
-      super.drawMe(g);
+      g.fillRoundRect(getX(), getY(), getWidth(), getHeight(), 40, 40);
       
-      Font font = new Font("vgasys.fon", Font.PLAIN, 50);
+      Font font = new Font("impact", Font.ITALIC, 50);
       g.setFont(font);
       g.setColor(new Color(235, 107, 111));
-      g.drawString(name, getX()+getWidth()/2, getY()+getHeight()/2);
+      g.drawString(name, getX()+50, getY()+68);
    }
 }
