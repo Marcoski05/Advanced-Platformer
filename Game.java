@@ -45,7 +45,7 @@ public class Game extends JComponent {
    // Constructor
    Game() {
       p1 = new Player();
-      window = new GraphicalWindow(p1);
+      window = new GraphicalWindow(p1, menu);
       p1.setWindow(window);
       
       window.getContentPane().setBackground(new Color(255, 246, 211));
@@ -472,6 +472,9 @@ public class Game extends JComponent {
    
    public static State getState() {
       return state;
+   }
+   public static void setState(State s) {
+      state = s;
    }
    public static GraphicalWindow getWindow() {
       return window;

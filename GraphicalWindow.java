@@ -7,15 +7,18 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 
-public class GraphicalWindow extends JFrame implements KeyListener {
+public class GraphicalWindow extends JFrame implements KeyListener, MouseListener {
 
    public final static int WIDTH = 1215; // width of the window
    public final static int HEIGHT = 687; // height of the window
    private Player p1; // reference
+   private Menu menu; // reference
    private boolean right, left, jump;
 
-   GraphicalWindow(Player p1) {
+   GraphicalWindow(Player p1, Menu menu) {
       left = false;
       right = false;
       jump = false;
@@ -30,7 +33,6 @@ public class GraphicalWindow extends JFrame implements KeyListener {
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setSize(WIDTH, HEIGHT);
       setLocationRelativeTo(null);
-//       setResizable(false);
    }
    
    // Getters
@@ -53,7 +55,8 @@ public class GraphicalWindow extends JFrame implements KeyListener {
       jump = s;
    }
    
-   // Methods
+   
+   // KeyListener Methods
    
    // Sets jump, right, and left, to false when their button is released
    public void keyReleased(KeyEvent e) {
@@ -84,6 +87,26 @@ public class GraphicalWindow extends JFrame implements KeyListener {
       }
    }
    public void keyTyped(KeyEvent e) {
+   }
+   
+   
+   // MouseListener Methods
+   
+   public void mouseClicked(MouseEvent e) {
+      int mx = e.getX();
+      int my = e.getX();
+      
+      if (mx > menu.getPlay().getLeft() && mx < menu.getPlay().getRight())
+         if (my > menu.getPlay().getTop() && my < menu.getPlay().getBottom())
+            Game.setState(Game.State.GAME);
+   }
+   public void mouseEntered(MouseEvent e) {
+   }
+   public void mouseExited(MouseEvent e) {
+   }
+   public void mousePressed(MouseEvent e) {
+   }
+   public void mouseReleased(MouseEvent e) {
    }
    
    // Does specified move based on which keys are currently pressed
