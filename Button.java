@@ -24,4 +24,8 @@ public class Button extends Rectangle {
       g.setColor(new Color(235, 107, 111));
       g.drawString(name, getX()+50, getY()+68);
    }
+   
+   public boolean wasPressed(int mx, int my) {
+      return (mx > getLeft() && mx < getRight() && my > getTop() && my < getBottom());
+   }
 }

@@ -24,7 +24,9 @@ public class GraphicalWindow extends JFrame implements KeyListener, MouseListene
       jump = false;
       setupFrame();
       addKeyListener(this);
+      addMouseListener(this);
       this.p1 = p1;
+      this.menu = menu;
    }
 
    // Sets the properties for the frame
@@ -94,11 +96,16 @@ public class GraphicalWindow extends JFrame implements KeyListener, MouseListene
    
    public void mouseClicked(MouseEvent e) {
       int mx = e.getX();
-      int my = e.getX();
+      int my = e.getY();
       
-      if (mx > menu.getPlay().getLeft() && mx < menu.getPlay().getRight())
-         if (my > menu.getPlay().getTop() && my < menu.getPlay().getBottom())
-            Game.setState(Game.State.GAME);
+      System.out.println("Mouse click at (" + mx + ", " + my + ")");
+      
+      if (menu.getPlay().wasPressed(mx, my)) {
+         Game.setState(Game.State.GAME);
+         Goal.setLevel(1);
+         p1.respawn();
+         System.out.println("Start Pressed");
+      }
    }
    public void mouseEntered(MouseEvent e) {
    }
@@ -108,6 +115,9 @@ public class GraphicalWindow extends JFrame implements KeyListener, MouseListene
    }
    public void mouseReleased(MouseEvent e) {
    }
+   
+   
+   // KeyListener Methods
    
    // Does specified move based on which keys are currently pressed
    public void keyListen() {

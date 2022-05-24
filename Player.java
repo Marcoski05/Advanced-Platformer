@@ -101,10 +101,8 @@ public class Player extends Rectangle {
    
    @Override
    public void drawMe(Graphics g) {
-      if (Game.getState() == Game.State.GAME) {
          super.drawMe(g);
          drawEyes(g);
-      }
     }
    
    // draws eyes based on the current direction being traveled

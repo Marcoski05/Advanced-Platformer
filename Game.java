@@ -40,11 +40,12 @@ public class Game extends JComponent {
    private Hazard[] h9 = new Hazard[7];
    private Goal goal;
    
-   Menu menu = new Menu();
+   Menu menu;
    
    // Constructor
    Game() {
       p1 = new Player();
+      menu = new Menu();
       window = new GraphicalWindow(p1, menu);
       p1.setWindow(window);
       
@@ -61,12 +62,10 @@ public class Game extends JComponent {
          }
          );
       
-      window.setVisible(true);
+      instantiate();
       
-      if (state == State.GAME) {
-         instantiate();
-         timer.start();
-      }
+      window.setVisible(true);
+      timer.start();
    }
    
    
@@ -97,76 +96,79 @@ public class Game extends JComponent {
    @Override
    public void paintComponent(Graphics g) {
    // calls drawMe for each element in each array
-      p1.drawMe(g);
-      menu.drawMe(g);
-      switch (Goal.getLevel()) {
-         case 1:
-            for (int r = 0; r < pl1.length; r++) {
-               pl1[r].drawMe(g);
-            }
-            break;
-         case 2:
-            for (int r = 0; r < pl2.length; r++) {
-               pl2[r].drawMe(g);
-            }
-            break;
-         case 3:
-            for (int r = 0; r < pl3.length; r++) {
-               pl3[r].drawMe(g);
-            }
-            break;
-         case 4:
-            for (int r = 0; r < pl4.length; r++) {
-               pl4[r].drawMe(g);
-            }
-            break;
-         case 5:
-            for (int r = 0; r < pl5.length; r++) {
-               pl5[r].drawMe(g);
-            }
-            for (int r = 0; r < h5.length; r++) {
-               h5[r].drawMe(g);
-            }
-            break;
-         case 6:
-            for (int r = 0; r < pl6.length; r++) {
-               pl6[r].drawMe(g);
-            }
-            for (int r = 0; r < h6.length; r++) {
-               h6[r].drawMe(g);
-            }
-            break;
-         case 7:
-            for (int r = 0; r < pl7.length; r++) {
-               pl7[r].drawMe(g);
-            }
-            for (int r = 0; r < h7.length; r++) {
-               h7[r].drawMe(g);
-            }
-            break;
-         case 8:
-            for (int r = 0; r < pl8.length; r++) {
-               pl8[r].drawMe(g);
-            }
-            for (int r = 0; r < h8.length; r++) {
-               h8[r].drawMe(g);
-            }
-            break;
-         case 9:
-            for (int r = 0; r < pl9.length; r++) {
-               pl9[r].drawMe(g);
-            }
-            for (int r = 0; r < h9.length; r++) {
-               h9[r].drawMe(g);
-            }
-            break;
-         case 10:
-            try {
-               Thread.sleep(END_PAUSE); // Pauses everything for specified time
-            } catch (InterruptedException e) {
-            }
-            System.exit(0); // Closes the window and ends the run
-            break;
+      if (state == State.MENU) 
+         menu.drawMe(g);
+      else if (state == State.GAME) {
+         p1.drawMe(g);
+         switch (Goal.getLevel()) {
+            case 1:
+               for (int r = 0; r < pl1.length; r++) {
+                  pl1[r].drawMe(g);
+               }
+               break;
+            case 2:
+               for (int r = 0; r < pl2.length; r++) {
+                  pl2[r].drawMe(g);
+               }
+               break;
+            case 3:
+               for (int r = 0; r < pl3.length; r++) {
+                  pl3[r].drawMe(g);
+               }
+               break;
+            case 4:
+               for (int r = 0; r < pl4.length; r++) {
+                  pl4[r].drawMe(g);
+               }
+               break;
+            case 5:
+               for (int r = 0; r < pl5.length; r++) {
+                  pl5[r].drawMe(g);
+               }
+               for (int r = 0; r < h5.length; r++) {
+                  h5[r].drawMe(g);
+               }
+               break;
+            case 6:
+               for (int r = 0; r < pl6.length; r++) {
+                  pl6[r].drawMe(g);
+               }
+               for (int r = 0; r < h6.length; r++) {
+                  h6[r].drawMe(g);
+               }
+               break;
+            case 7:
+               for (int r = 0; r < pl7.length; r++) {
+                  pl7[r].drawMe(g);
+               }
+               for (int r = 0; r < h7.length; r++) {
+                  h7[r].drawMe(g);
+               }
+               break;
+            case 8:
+               for (int r = 0; r < pl8.length; r++) {
+                  pl8[r].drawMe(g);
+               }
+               for (int r = 0; r < h8.length; r++) {
+                  h8[r].drawMe(g);
+               }
+               break;
+            case 9:
+               for (int r = 0; r < pl9.length; r++) {
+                  pl9[r].drawMe(g);
+               }
+               for (int r = 0; r < h9.length; r++) {
+                  h9[r].drawMe(g);
+               }
+               break;
+            case 10:
+               try {
+                  Thread.sleep(END_PAUSE); // Pauses everything for specified time
+               } catch (InterruptedException e) {
+               }
+               System.exit(0); // Closes the window and ends the run
+               break;
+         }
       }
    }
    
