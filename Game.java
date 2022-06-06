@@ -96,10 +96,11 @@ public class Game extends JComponent {
    @Override
    public void paintComponent(Graphics g) {
    // calls drawMe for each element in each array
-      if (state == State.MENU) 
+      if (state == State.MENU)
          menu.drawMe(g);
       else if (state == State.GAME) {
          p1.drawMe(g);
+         Task.drawTime(g);
          switch (Goal.getLevel()) {
             case 1:
                for (int r = 0; r < pl1.length; r++) {
@@ -162,6 +163,7 @@ public class Game extends JComponent {
                }
                break;
             case 10:
+               Goal.addTime(Task.getTime());
                try {
                   Thread.sleep(END_PAUSE); // Pauses everything for specified time
                } catch (InterruptedException e) {

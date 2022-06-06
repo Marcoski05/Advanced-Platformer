@@ -18,7 +18,7 @@ public class Player extends Rectangle {
    private double yAcceleration, xAcceleration; // "Force" that you are putting on object
    private final double FALL_GRAV = 1.4; // Gravity while falling
    private final double RISE_GRAV = 1; // Gravity while rising
-   private final double APEX_GRAV = 0.7; // Gravity at th epeak of your jump (lower to give more hang time)
+   private final double APEX_GRAV = 0.7; // Gravity at the peak of your jump (lower to give more hang time)
    private double maxFallSpeed;
    private final double APEX = 3;
    private final double SPEED = 2; // Speed that you accelerate by

@@ -4,6 +4,8 @@
 
 import java.awt.Graphics;
 import java.awt.Color;
+import java.io.*;
+import java.util.Scanner;
 
 public class Goal extends Rectangle {
 
@@ -56,6 +58,24 @@ public class Goal extends Rectangle {
       else
          return false;
    }
+   
+   public static void addTime(double time) {
+      String pathname = "SBB Times.txt";
+      Writer writer = null;
+      
+      try {
+         writer = new FileWriter (pathname, true);
+      }
+      catch (IOException ex) {
+         System.out.println("*** Cannot create/open "+ pathname +" ***");
+         System.exit(1);
+      }
+      
+      PrintWriter output = new PrintWriter(writer);
+      output.printf("%.2f ", time);
+      output.close();
+   }  
+
    
    // toString
    public String toString() {
