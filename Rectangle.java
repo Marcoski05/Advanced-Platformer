@@ -90,7 +90,7 @@ public class Rectangle {
       right = r;
    }
    
-   // Methodss
+   // Methods
    
    public void drawMe(Graphics g) {
       g.setColor(color);

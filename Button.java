@@ -21,8 +21,8 @@ public class Button extends Rectangle {
    public void drawMe(Graphics g) {
       Graphics2D g2D = (Graphics2D)g;
       g2D.setRenderingHint(
-        RenderingHints.KEY_ANTIALIASING,
-        RenderingHints.VALUE_ANTIALIAS_ON);
+         RenderingHints.KEY_ANTIALIASING,
+         RenderingHints.VALUE_ANTIALIAS_ON);
         
       g2D.fillRoundRect((int)((getX()*(Game.getWindow().getWidth()-14)/1200.0)+0.5), (int)((getY()*(Game.getWindow().getHeight()-37)/650.0)+0.5), (int)((getWidth()*(Game.getWindow().getWidth()-14)/1200.0)+0.5), (int)((getHeight()*(Game.getWindow().getHeight()-37)/650.0)+0.5), (int)((40*(Game.getWindow().getWidth()-14)/1200.0)+0.5), (int)((40*(Game.getWindow().getHeight()-37)/650.0)+0.5));
       

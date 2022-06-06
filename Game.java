@@ -163,7 +163,8 @@ public class Game extends JComponent {
                }
                break;
             case 10:
-               Goal.addTime(Task.getTime());
+               double time = Task.getTime()-0.34;
+               Goal.addTime(time);
                try {
                   Thread.sleep(END_PAUSE); // Pauses everything for specified time
                } catch (InterruptedException e) {
